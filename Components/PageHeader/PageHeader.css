@@ -20,22 +20,22 @@
 
 }
 
-h1{
+.page__header__title{
     margin: 0;
-    font-size: 32px;
-    font-family: "Roboto";
+    font-size: 30px;
+    font-family: 'Roboto', sans-serif;
 }
 
 .subtitle{
     color:#6b6b6b;
-    font-size: 15px;
+    font-size: 14px;
 
 }
 
 .icon__header{
     margin: 0 ;
     background-color: #177cffd8;
-    font-size: 30px;
+    font-size: 27px;
     color: #f0f0f0;
     padding:10px 12px 3px  ;
     border-radius: 10px;
@@ -53,6 +53,7 @@ h1{
     color: #f0f0f0;
     cursor: pointer;
     font-size: 14px;
-    
+    font-weight: 600;
+    font-family: "Roboto", sans-serif;
 }
 

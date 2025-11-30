@@ -151,8 +151,7 @@ export default function ProductTable() {
                         ${item.status === "Em Estoque" ? "status--alta" : ""}
                         ${item.status === "Estoque Baixo" ? "status--baixa" : ""}
                         ${item.status === "Sem Estoque" ? "status--zero" : ""}
-                    `}
-                                    >
+                    `}>
                                         {item.status}
                                     </span>
                                 </td>

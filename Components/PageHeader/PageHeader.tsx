@@ -29,14 +29,14 @@ export default function PageHeader({
       <div className="left">
         <div className="icon__header">{icon}</div>
         <div>
-          <h1>{title}</h1>
+          <h1 className="page__header__title">{title}</h1>
           <span className="subtitle">{subtitle}</span>
         </div>
       </div>
 
       {buttonText && (
         <button className="header-btn" onClick={onButtonClick}>
-           +{buttonText}
+           + { buttonText }
         </button> 
       )}
     </div>

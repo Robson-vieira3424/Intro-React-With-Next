@@ -49,8 +49,8 @@ td{
 }   
 
 .Title__item{
-    color: rgba(0, 0, 0, 0.8);
-    font-weight: 900;
+    color: rgba(0, 0, 0, 0.9);
+    font-weight: 600;
 }
 
 .texto__table__generico{
@@ -118,4 +118,10 @@ td{
     background-color: #8d0b0b56;
     cursor: pointer;
     color: #bb2929b0;
+}
+
+.quantidade__table__generico{
+    text-align: center;
+    color: #000000;
+    font-weight: 400;
 }
