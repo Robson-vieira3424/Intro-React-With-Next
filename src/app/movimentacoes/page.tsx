@@ -1,58 +1,57 @@
-'use client'
+"use client";
 import { LuActivity } from "react-icons/lu";
 import PageHeader from "../../../Components/PageHeader/PageHeader";
 import "../global.css";
 import PainelMovimentacoes from "../../../Components/Painels/PainelMovimentacoes/painelMovimentacoes";
 import MovimentsTable from "../../../Components/Tables/MovimentsTable/MovimentsTable";
-import { movimentacao } from "../../../testeLocal/Mocks";
 import { useEffect, useState } from "react";
 import { Moviments } from "../../../types/Moviments";
 import axios from "axios";
 import Modal from "../../../Components/Modal/Modal";
 import FormMoviments from "../../../Components/Forms/FormMoviments/FormMoviments";
 
-
 export default function MovimentacoesPage() {
+  const [listMoviments, setListMoviments] = useState<Moviments[]>([]);
 
-    const [listMoviments, setListMoviments] = useState<Moviments[]>([])
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+  const getListMoviments = async () => {
+    const res = await axios.get("http:localhost:8080/moviments");
+    const lista = res.data as Moviments[];
+    setListMoviments(lista);
+  };
 
-    const getListMoviments = async () => {
+  useEffect(() => {
+    getListMoviments();
+  }, []);
 
-        const res = await axios.get("http:localhost:8080/moviments");
-        const lista = res.data as Moviments[];
-        setListMoviments(lista);
-    }
-
-    useEffect(() => {
-        getListMoviments();
-    }, []
-    )
-
-    /* const criarMoviment = (e) =>{
+  /* const criarMoviment = (e) =>{
      
      } */
 
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
-    };
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
-    return (
-        <>
-            <PageHeader
-                icon={<span className="Icone-Header"><LuActivity color="white" /></span>}
-                title="Movimentações"
-                subtitle="Histórico de entradas e saídas - Prefeitura Municipal de Penedo"
-                buttonText="Nova Movimentação"
-                onButtonClick={() => setIsModalOpen(true)}
-            />
+  return (
+    <>
+      <PageHeader
+        icon={
+          <span className="Icone-Header">
+            <LuActivity color="white" />
+          </span>
+        }
+        title="Movimentações"
+        subtitle="Histórico de entradas e saídas - Prefeitura Municipal de Penedo"
+        buttonText="Nova Movimentação"
+        onButtonClick={() => setIsModalOpen(true)}
+      />
 
-            <PainelMovimentacoes />
-            <MovimentsTable movimentacao={listMoviments} />
-            <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-                <FormMoviments onClose={handleCloseModal} />
-                </Modal>
-        </>
-    );
+      <PainelMovimentacoes />
+      <MovimentsTable movimentacao={listMoviments} />
+      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+        <FormMoviments onClose={handleCloseModal} />
+      </Modal>
+    </>
+  );
 }

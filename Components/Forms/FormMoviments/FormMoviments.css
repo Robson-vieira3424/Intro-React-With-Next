@@ -4,7 +4,7 @@ form {
     max-width: 500px;
     border: 1px solid beige;
     border-radius: 4%;
-    background-color: rgba(139, 139, 139, 0.082);
+    background-color: #ededed;
 }
 
 fieldset {
@@ -35,7 +35,7 @@ legend {
 }
 
 label {
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 600;
     color: rgba(0, 0, 0, 0.89);
 }

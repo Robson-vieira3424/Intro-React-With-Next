@@ -14,7 +14,6 @@ export default function ({ isOpen, onClose, children }: ModalProps) {
         <>
             <div className="container__modal">
                 <div className="conteudo__modal">
-                    <button className="modal__close" onClick={onClose}>&times;</button>
                     {children}
                 </div>
             </div>
