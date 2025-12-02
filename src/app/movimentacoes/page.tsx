@@ -16,7 +16,7 @@ export default function MovimentacoesPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const getListMoviments = async () => {
-    const res = await axios.get("http:localhost:8080/moviments");
+    const res = await axios.get("http://localhost:8080/moviments");
     const lista = res.data as Moviments[];
     setListMoviments(lista);
   };
