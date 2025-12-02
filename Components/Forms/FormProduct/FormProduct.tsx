@@ -99,7 +99,7 @@ export default function FormProduct({ onSuccess, onClose }: FormProductProps) {
             >
              <option value="">Selecione um produto</option>
                             {PRODUTOS.map((item) => (
-                                <option key={item} value={item.toLocaleLowerCase().replace("", "_")}>
+                                <option key={item} value={item.toLocaleLowerCase().replace(" ", "_")}>
                                     {item}</option>
                             ))}
             </select>
@@ -128,7 +128,7 @@ export default function FormProduct({ onSuccess, onClose }: FormProductProps) {
           </div>
 
           <div className="box__buttons" >
-            <button type="button" className="btn__cancelar">Cancelar</button>
+            <button type="button" className="btn__cancelar" onClick={onClose}>Cancelar</button>
             <button type="submit" className="btn__adicionar">{isLoading ? "Enviando..." : "Adicionar Item"}</button>
           </div>
         </fieldset>
