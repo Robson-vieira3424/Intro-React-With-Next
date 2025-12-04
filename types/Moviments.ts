@@ -1,10 +1,10 @@
 export type Moviments = {
         id: string;
-        data: string;
+        moveDate: string;
         item: string;
         categoria: string;
-        tipo: string;
-        quantidade: string;
+        type: string;
+        amounut: string;
         destinoOrigem: string;
         observacoes: string;
     }

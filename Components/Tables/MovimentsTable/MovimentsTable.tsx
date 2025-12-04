@@ -31,19 +31,19 @@ export default function MovimentsTable({movimentacao}: MovimentsTableProps ) {
                         movimentacao.length > 0 ? 
                         movimentacao.map((item) => 
                             <tr key={item.id}>
-                                <td className="data__atualização">{item.data}</td>
+                                <td className="data__atualização">{item.moveDate}</td>
                                 <td className="Title__item">{item.item}</td>
                                 <td className="texto__table__generico">{item.categoria}</td>
                                 <td>
                                     <span
                                         className={  `tipo 
-                                            ${item.tipo === "Entrada" ? "entrada" : "" }
-                                            ${item.tipo === "Saída" ? "saida" : "" }
+                                            ${item.type === "Entrada" ? "entrada" : "" }
+                                            ${item.type === "Saída" ? "saida" : "" }
                                             `}>
-                                            {item.tipo}
+                                            {item.type}
                                             </span>
                                             </td>
-                                <td className="quantidade__table__generico">{item.quantidade}</td>
+                                <td className="quantidade__table__generico">{item.amounut}</td>
                                 <td className="texto__table__generico">{item.destinoOrigem}</td>
                                 <td>{item.observacoes}</td>
                                 <td>

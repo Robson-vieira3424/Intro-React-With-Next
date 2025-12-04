@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+"use client"
+import { useState, useEffect, FormEvent } from "react";
 import axios from "axios";
 import "./FormMoviments.css";
 
@@ -41,8 +42,8 @@ export default function FormMoviments({ onClose }: FormMovimentsProps) {
         const fetchProducts = async () => {
             try {
                 // Ajuste a URL se seu endpoint de listar produtos for diferente
-                const response = await axios.get("http://localhost:8080/product");
-                setProductsList(response.data); 
+                const response = await axios.get("http://localhost:8080/product/select");
+                setProductsList(response.data as Product[]); 
             } catch (error) {
                 console.error("Erro ao buscar produtos:", error);
             }
@@ -50,16 +51,26 @@ export default function FormMoviments({ onClose }: FormMovimentsProps) {
         fetchProducts();
     }, []);
 
-    // 2. Atualiza o estado conforme o usuário digita
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
-    };
+    
 
     // 3. Envia para o Backend
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+    
+        console.log(productsList)
 
+        const form = new FormData(e.currentTarget)
+
+        setFormData({
+        productId: form.get("productId") as string,
+        type: form.get("type") as string, // Valor padrão compatível com Java (INPUT/OUTPUT)
+        amount: Number (form.get("amount")) ,
+        date: form.get("date") as string, // Data de hoje
+        // Campos visuais (não salvos no banco ainda pois faltam no DTO)
+        categoria: form.get("categoria") as string, 
+        secretaria: form.get("secretaria") as string,
+        observacao:  form.get("observacao") as string
+    });
         // Validação básica
         if (!formData.productId || !formData.amount) {
             alert("Por favor, selecione um produto e informe a quantidade.");
@@ -72,11 +83,11 @@ export default function FormMoviments({ onClose }: FormMovimentsProps) {
                 productId: Number(formData.productId),
                 type: formData.type, // Já está como INPUT ou OUTPUT
                 amount: Number(formData.amount),
-                // Nota: O Java está sobrescrevendo a data com "new Date()" no Service,
-                // mas enviamos aqui caso você mude a lógica no futuro.
-                moveDate: formData.date 
+                moveDate: formData.date,
+                categoria: formData.categoria
+        
             };
-
+            console.log(formData)
             await axios.post("http://localhost:8080/moviments", payload);
             
             // SUCESSO: Fecha o modal e avisa para atualizar a tabela (true)
@@ -99,8 +110,7 @@ export default function FormMoviments({ onClose }: FormMovimentsProps) {
                     <select 
                         className="select__item" 
                         name="productId" 
-                        value={formData.productId} 
-                        onChange={handleChange}
+                        
                         required
                     >
                         <option value="">Selecione um produto</option>
@@ -118,8 +128,7 @@ export default function FormMoviments({ onClose }: FormMovimentsProps) {
                     <input 
                         type="text" 
                         name="categoria" 
-                        value={formData.categoria} 
-                        onChange={handleChange} 
+                       
                     />
                 </div>
 
@@ -129,8 +138,7 @@ export default function FormMoviments({ onClose }: FormMovimentsProps) {
                     <select 
                         className="select__item" 
                         name="type" 
-                        value={formData.type} 
-                        onChange={handleChange}
+                        
                     >
                         <option value="INPUT">Entrada</option>
                         <option value="OUTPUT">Saída</option>
@@ -143,8 +151,7 @@ export default function FormMoviments({ onClose }: FormMovimentsProps) {
                     <input 
                         type="number" 
                         name="amount" 
-                        value={formData.amount} 
-                        onChange={handleChange}
+                       
                         min="1"
                         required
                     />
@@ -156,8 +163,7 @@ export default function FormMoviments({ onClose }: FormMovimentsProps) {
                     <select 
                         className="select__item"
                         name="secretaria"
-                        value={formData.secretaria}
-                        onChange={handleChange}
+                       
                     >
                         <option value="">Selecione uma Secretaria</option>
                         {SECRETARIAS.map((sec) => (
@@ -174,8 +180,7 @@ export default function FormMoviments({ onClose }: FormMovimentsProps) {
                     <input 
                         type="date" 
                         name="date" 
-                        value={formData.date} 
-                        onChange={handleChange} 
+                        
                     />
                 </div>
 
@@ -186,8 +191,6 @@ export default function FormMoviments({ onClose }: FormMovimentsProps) {
                         className="input__observação" 
                         type="text" 
                         name="observacao" 
-                        value={formData.observacao}
-                        onChange={handleChange}
                         placeholder="Digite algo" 
                     />
                 </div>
