@@ -8,6 +8,7 @@ import PainelProducts from "../../../Components/Painels/PainelProducts/painelPro
 import ProductTable from "../../../Components/Tables/ProducTable/ProductTable";
 import Modal from "../../../Components/Modal/Modal";
 import FormProduct from "../../../Components/Forms/FormProduct/FormProduct";
+import axios from "axios";
 
 export default function EstoquePage() {
 
