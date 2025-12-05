@@ -1,12 +1,13 @@
 'use client';
 import { useState, useEffect } from "react";
 import { BsBoxSeam } from "react-icons/bs";
-import FormProduct from "../../../components/Forms/FormProduct/FormProduct";
-import Modal from "../../../components/Modal/Modal";
-import PageHeader from "../../../components/PageHeader/PageHeader";
-import PainelProducts from "../../../components/Painels/PainelProducts/painelProducts";
-import ProductTable from "../../../components/Tables/ProducTable/ProductTable";
+
 import "../global.css";
+import PageHeader from "../../../Components/PageHeader/PageHeader";
+import PainelProducts from "../../../Components/Painels/PainelProducts/painelProducts";
+import ProductTable from "../../../Components/Tables/ProducTable/ProductTable";
+import Modal from "../../../Components/Modal/Modal";
+import FormProduct from "../../../Components/Forms/FormProduct/FormProduct";
 
 export default function EstoquePage() {
 

@@ -1,9 +1,9 @@
 'use client'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import CardDashboard from "../../../components/Card/Card-Dashboard";
-import { dashboardCardsConfig } from "../../../components/Card/config-card-dashboard";
 import './dashboard.css';
 import { useState } from "react";
+import CardDashboard from "../../../Components/Card/Card-Dashboard";
+import { dashboardCardsConfig } from "../../../Components/Card/config-card-dashboard";
 
 export default function DashboardPage() {
     const [filtroData, setFiltroData] = useState<string>()

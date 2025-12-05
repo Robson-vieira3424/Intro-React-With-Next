@@ -1,14 +1,12 @@
 "use client";
 import { LuActivity } from "react-icons/lu";
-import PageHeader from "../../../components/PageHeader/PageHeader";
-import "../global.css";
-import PainelMovimentacoes from "../../../components/Painels/PainelMovimentacoes/painelMovimentacoes";
-import MovimentsTable from "../../../components/Tables/MovimentsTable/MovimentsTable";
-import { useEffect, useState } from "react";
+import PainelMovimentacoes from "../../../Components/Painels/PainelMovimentacoes/painelMovimentacoes";
+import MovimentsTable from "../../../Components/Tables/MovimentsTable/MovimentsTable";
+import Modal from "../../../Components/Modal/Modal";
+import FormMoviments from "../../../Components/Forms/FormMoviments/FormMoviments";
+import PageHeader from "../../../Components/PageHeader/PageHeader";
 import { Moviments } from "../../../types/Moviments";
-import axios from "axios";
-import Modal from "../../../components/Modal/Modal";
-import FormMoviments from "../../../components/Forms/FormMoviments/FormMoviments";
+import { useEffect, useState } from "react";
 
 export default function MovimentacoesPage() {
   const [listMoviments, setListMoviments] = useState<Moviments[]>([]);
